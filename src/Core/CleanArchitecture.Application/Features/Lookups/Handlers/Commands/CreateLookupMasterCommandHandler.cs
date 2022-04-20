@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Contracts.Interfaces;
-using CleanArchitecture.Application.ViewModels.Validators;
 using CleanArchitecture.Application.Features.Lookups.Requests.Commands;
 using CleanArchitecture.Application.Responses;
 using CleanArchitecture.Domain.Entity.Lookup;
 using MediatR;
+using CleanArchitecture.Application.DTOs.Lookup.Validators;
 
 namespace CleanArchitecture.Application.Features.Lookups.Handlers.Commands;
 
@@ -22,8 +22,8 @@ public class CreateLookupMasterCommandHandler : IRequestHandler<CreateLookupMast
 public async Task<BaseCommandResponse> Handle(CreateLookupMasterCommand request, CancellationToken cancellationToken)
     {
         var response = new BaseCommandResponse();
-        var validator = new CreateLookupMasterViewModelValidator();
-        var validationResult = await validator.ValidateAsync(request.LookupMasterViewModel);
+        var validator = new CreateLookupMasterDTOValidator();
+        var validationResult = await validator.ValidateAsync(request.LookupMasterDTO);
 
         if (validationResult.IsValid == false)
         {
@@ -33,7 +33,7 @@ public async Task<BaseCommandResponse> Handle(CreateLookupMasterCommand request,
         }
         else
         {
-            var lookupmMaster = _mapper.Map<LookupMasterEntity>(request.LookupMasterViewModel);
+            var lookupmMaster = _mapper.Map<LookupMasterEntity>(request.LookupMasterDTO);
 
             lookupmMaster = await _unitOfWork.LookupMasterRepository.AddAsync(lookupmMaster);
             await _unitOfWork.SaveAsync();

@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.DTOs.Lookup;
-using CleanArchitecture.Application.ViewModels;
-using CleanArchitecture.Application.ViewModels.Lookup;
-using CleanArchitecture.Domain.Entity;
 using CleanArchitecture.Domain.Entity.Lookup;
 
 namespace CleanArchitecture.Application.Profiles
@@ -11,10 +8,10 @@ namespace CleanArchitecture.Application.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<LookupMasterEntity, CreateLookupMasterViewModel>().ReverseMap();
-            CreateMap<LookupMasterEntity, UpdateLookupMasterViewModel>().ReverseMap();
-            CreateMap<LookupMasterEntity, DeleteLookupMasterViewModel>().ReverseMap();
-            CreateMap<LookupDetailEntity, LookupDetailViewModel>().ReverseMap();
+            CreateMap<LookupMasterEntity, CreateLookupMasterDTO>().ReverseMap();
+            CreateMap<LookupMasterEntity, UpdateLookupMasterDTO>().ReverseMap();
+            CreateMap<LookupMasterEntity, DeleteLookupMasterDTO>().ReverseMap();
+            CreateMap<LookupDetailEntity, LookupDetailDTO>().ReverseMap();
             CreateMap<LookupDetailEntity, GetLookupDetailByTypeResponseDTO>().ReverseMap();
         }
     }

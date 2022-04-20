@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.DTOs.Lookup
 {
-    public class CreateLookupMasterViewModel:ILookpMasterDTO
+    public class CreateLookupMasterDTO : ILookpMasterDTO
     {
         public string Type { get; set; }
         public string Description { get; set; }

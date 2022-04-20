@@ -7,15 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DTOs\Lookup\CreateLookupMasterDTO.cs" />
-    <Compile Remove="DTOs\Lookup\DeleteLookupMasterDTO.cs" />
-    <Compile Remove="DTOs\Lookup\ILookpMasterDTO.cs" />
-    <Compile Remove="DTOs\Lookup\LookupMasterDTO.cs" />
-    <Compile Remove="DTOs\Lookup\UpdateLookupMasterDTO.cs" />
-    <Compile Remove="DTOs\Lookup\Validators\CreateLookupMasterDTOValidator.cs" />
-    <Compile Remove="DTOs\Lookup\Validators\DeleteLookupMasterDTOValidator.cs" />
-    <Compile Remove="DTOs\Lookup\Validators\ILookupMasterDTOValidator.cs" />
-    <Compile Remove="DTOs\Lookup\Validators\UpdateLookupMasterDTOValidator.cs" />
+    <Compile Remove="ViewModels\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <None Remove="ViewModels\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,10 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CleanArchitecture.Domain\CleanArchitecture.Domain.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Utility\CleanArchitecture.Utility.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTOs\Lookup\Validators\" />
   </ItemGroup>
 
 </Project>

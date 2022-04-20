@@ -24,18 +24,18 @@ public class UpdateLookupMasterCommandHandler : IRequestHandler<UpdateLookupMast
 
     public async Task<Unit> Handle(UpdateLookupMasterCommand request, CancellationToken cancellationToken)
     {
-        var validator = new UpdateLookupMasterViewModelValidator();
-        var validationResult = await validator.ValidateAsync(request.UpdateLookupMasterViewModel);
+        var validator = new UpdateLookupMasterDTOValidator();
+        var validationResult = await validator.ValidateAsync(request.UpdateLookupMasterDTO);
 
         if (validationResult.IsValid == false)
             throw new ValidationException(validationResult);
 
-        var lookupMaster = await _unitOfWork.LookupMasterRepository.GetByIdAsync(request.UpdateLookupMasterViewModel.Id);
+        var lookupMaster = await _unitOfWork.LookupMasterRepository.GetByIdAsync(request.UpdateLookupMasterDTO.Id);
 
         if (lookupMaster is null)
-            throw new NotFoundException(nameof(lookupMaster), request.UpdateLookupMasterViewModel.Id);
+            throw new NotFoundException(nameof(lookupMaster), request.UpdateLookupMasterDTO.Id);
 
-        _mapper.Map(request.UpdateLookupMasterViewModel, lookupMaster);
+        _mapper.Map(request.UpdateLookupMasterDTO, lookupMaster);
 
         await _unitOfWork.LookupMasterRepository.UpdateAsync(lookupMaster);
         await _unitOfWork.SaveAsync();

@@ -7,11 +7,6 @@ using CleanArchitecture.Domain.Entity.Lookup;
 using CleanArchitecture.Utility.Extensions;
 using CleanArchitecture.Utility.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Features.Lookups.Handlers.Queries
 {

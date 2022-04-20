@@ -1,10 +1,9 @@
 ﻿using CleanArchitecture.Application.DTOs.Lookup;
-using CleanArchitecture.Application.ViewModels;
 using MediatR;
 
 namespace CleanArchitecture.Application.Features.Lookups.Requests.Queries;
 
-public class GetLookupMasterDetailRequest : IRequest<CreateLookupMasterViewModel>
+public class GetLookupMasterDetailRequest : IRequest<CreateLookupMasterDTO>
 {
     public int Id { get; set; }
 }

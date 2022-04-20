@@ -3,13 +3,11 @@ using AutoMapper;
 using CleanArchitecture.Application.Contracts.Interfaces;
 using CleanArchitecture.Application.DTOs.Lookup;
 using CleanArchitecture.Application.Features.Lookups.Requests.Queries;
-using CleanArchitecture.Application.ViewModels;
-using CleanArchitecture.Domain.Entity.Lookup;
 using MediatR;
 
 namespace CleanArchitecture.Application.Features.Lookups.Handlers.Queries;
 
-public class GetLookupMasterDetailRequestHandler : IRequestHandler<GetLookupMasterDetailRequest, CreateLookupMasterViewModel>
+public class GetLookupMasterDetailRequestHandler : IRequestHandler<GetLookupMasterDetailRequest, CreateLookupMasterDTO>
 {    
     private readonly IMapper _mapper;
 
@@ -22,10 +20,10 @@ public class GetLookupMasterDetailRequestHandler : IRequestHandler<GetLookupMast
         _mapper = mapper;
         _unitOfWork = unitOfWork;
     }
-    public async Task<CreateLookupMasterViewModel> Handle(GetLookupMasterDetailRequest request, CancellationToken cancellationToken)
+    public async Task<CreateLookupMasterDTO> Handle(GetLookupMasterDetailRequest request, CancellationToken cancellationToken)
     {
         var lookupMaster = await _unitOfWork.LookupMasterRepository.GetByIdAsync(request.Id);
-        return _mapper.Map<CreateLookupMasterViewModel>(lookupMaster);
+        return _mapper.Map<CreateLookupMasterDTO>(lookupMaster);
     }
 
 }

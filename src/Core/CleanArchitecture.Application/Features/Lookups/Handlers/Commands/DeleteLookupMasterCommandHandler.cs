@@ -21,18 +21,18 @@ public class DeleteLookupMasterCommandHandler : IRequestHandler<DeleteLookupMast
 
     public async Task<Unit> Handle(DeleteLookupMasterCommand request, CancellationToken cancellationToken)
     {
-        var validator = new DeleteLookupMasterViewModelValidator();
-        var validationResult = await validator.ValidateAsync(request.DeleteLookupMasterViewModel);
+        var validator = new DeleteLookupMasterDTOValidator();
+        var validationResult = await validator.ValidateAsync(request.DeleteLookupMasterDTO);
 
         if (validationResult.IsValid == false)
             throw new ValidationException(validationResult);
 
-        var lookupMaster = await _unitOfWork.LookupMasterRepository.GetByIdAsync(request.DeleteLookupMasterViewModel.Id);
+        var lookupMaster = await _unitOfWork.LookupMasterRepository.GetByIdAsync(request.DeleteLookupMasterDTO.Id);
 
         if (lookupMaster is null)
-            throw new NotFoundException(nameof(lookupMaster), request.DeleteLookupMasterViewModel.Id);
+            throw new NotFoundException(nameof(lookupMaster), request.DeleteLookupMasterDTO.Id);
 
-        _mapper.Map(request.DeleteLookupMasterViewModel, lookupMaster);
+        _mapper.Map(request.DeleteLookupMasterDTO, lookupMaster);
 
         await _unitOfWork.LookupMasterRepository.UpdateAsync(lookupMaster);
         await _unitOfWork.SaveAsync();
