@@ -32,32 +32,32 @@ public class LookupDetailConfiguration : IEntityTypeConfiguration<LookupDetailEn
                          .HasMaxLength(20);
 
         builder.Property(t => t.IsDefault)
-                      .HasColumnType("BIT").HasDefaultValue(false);
+                      .HasColumnType("boolean").HasDefaultValue(false);
 
         #region Audit Fileds
         builder.Property(t => t.DateCreated)
                       .IsRequired()
-                      .HasColumnType("Datetime")
-                      .HasDefaultValueSql("GetDate()");
+                      .HasColumnType("date")
+                      .HasDefaultValueSql("NOW()");
 
         builder.Property(t => t.CreatedBy)
                       .IsRequired()
-                      .HasColumnType("NVARCHAR")
+                      .HasColumnType("TEXT")
                       .HasMaxLength(50)
                       .HasDefaultValue("SystemUser");
 
         builder.Property(t => t.IsDeleted)
-                      .HasColumnType("BIT").HasDefaultValue(false);
+                      .HasColumnType("boolean").HasDefaultValue(false);
 
         builder.Property(t => t.LastModifiedDate)
-                      .HasColumnType("Datetime");
+                      .HasColumnType("date");
 
         builder.Property(t => t.LastModifiedBy)
-                      .HasColumnType("NVARCHAR")
+                      .HasColumnType("TEXT")
                       .HasMaxLength(50);
 
         builder.Property(t => t.IsActive)
-                      .HasColumnType("BIT").HasDefaultValue(true);
+                      .HasColumnType("boolean").HasDefaultValue(true);
         #endregion
     }
 }
